@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TimeTrackingDBModelStoreContainer" CdmEntityContainer="TimeTrackingDBEntities">
+    <EntitySetMapping Name="PROJECTs">
+      <EntityTypeMapping TypeName="TimeTrackingDBModel.PROJECT">
+        <MappingFragment StoreEntitySet="PROJECTs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="dateStarted" ColumnName="dateStarted" />
+          <ScalarProperty Name="dateEnded" ColumnName="dateEnded" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WORKERs">
+      <EntityTypeMapping TypeName="TimeTrackingDBModel.WORKER">
+        <MappingFragment StoreEntitySet="WORKERs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WORKTIMEs">
+      <EntityTypeMapping TypeName="TimeTrackingDBModel.WORKTIME">
+        <MappingFragment StoreEntitySet="WORKTIMEs">
+          <ScalarProperty Name="projectId" ColumnName="projectId" />
+          <ScalarProperty Name="workerId" ColumnName="workerId" />
+          <ScalarProperty Name="workTimeInDays" ColumnName="workTimeInDays" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PROJECTTIMETOTALs">
+      <EntityTypeMapping TypeName="TimeTrackingDBModel.PROJECTTIMETOTAL">
+        <MappingFragment StoreEntitySet="PROJECTTIMETOTALs">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="timeTotal" ColumnName="timeTotal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WORKERTIMETOTALs">
+      <EntityTypeMapping TypeName="TimeTrackingDBModel.WORKERTIMETOTAL">
+        <MappingFragment StoreEntitySet="WORKERTIMETOTALs">
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="timeTotal" ColumnName="timeTotal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

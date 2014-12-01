@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TimeTrackingDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="PROJECT">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="dateStarted" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="dateEnded" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="WORKTIMEs" Relationship="Self.FK_WORKTIMEs_To_PROJECTs" FromRole="PROJECTs" ToRole="WORKTIMEs" />
+  </EntityType>
+  <EntityType Name="WORKER">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="firstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="lastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="WORKTIMEs" Relationship="Self.FK_WORKTIMEs_To_WORKERs" FromRole="WORKERs" ToRole="WORKTIMEs" />
+  </EntityType>
+  <EntityType Name="WORKTIME">
+    <Key>
+      <PropertyRef Name="projectId" />
+      <PropertyRef Name="workerId" />
+    </Key>
+    <Property Name="projectId" Type="Int32" Nullable="false" />
+    <Property Name="workerId" Type="Int32" Nullable="false" />
+    <Property Name="workTimeInDays" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="PROJECT" Relationship="Self.FK_WORKTIMEs_To_PROJECTs" FromRole="WORKTIMEs" ToRole="PROJECTs" />
+    <NavigationProperty Name="WORKER" Relationship="Self.FK_WORKTIMEs_To_WORKERs" FromRole="WORKTIMEs" ToRole="WORKERs" />
+  </EntityType>
+  <EntityType Name="PROJECTTIMETOTAL">
+    <Key>
+      <PropertyRef Name="Name" />
+    </Key>
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="timeTotal" Type="Int32" />
+  </EntityType>
+  <EntityType Name="WORKERTIMETOTAL">
+    <Key>
+      <PropertyRef Name="firstName" />
+      <PropertyRef Name="lastName" />
+    </Key>
+    <Property Name="firstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="lastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="timeTotal" Type="Int32" />
+  </EntityType>
+  <Association Name="FK_WORKTIMEs_To_PROJECTs">
+    <End Role="PROJECTs" Type="Self.PROJECT" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="WORKTIMEs" Type="Self.WORKTIME" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROJECTs">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="WORKTIMEs">
+        <PropertyRef Name="projectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WORKTIMEs_To_WORKERs">
+    <End Role="WORKERs" Type="Self.WORKER" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="WORKTIMEs" Type="Self.WORKTIME" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WORKERs">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="WORKTIMEs">
+        <PropertyRef Name="workerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TimeTrackingDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="PROJECTs" EntityType="Self.PROJECT" />
+    <EntitySet Name="WORKERs" EntityType="Self.WORKER" />
+    <EntitySet Name="WORKTIMEs" EntityType="Self.WORKTIME" />
+    <EntitySet Name="PROJECTTIMETOTALs" EntityType="Self.PROJECTTIMETOTAL" />
+    <EntitySet Name="WORKERTIMETOTALs" EntityType="Self.WORKERTIMETOTAL" />
+    <AssociationSet Name="FK_WORKTIMEs_To_PROJECTs" Association="Self.FK_WORKTIMEs_To_PROJECTs">
+      <End Role="PROJECTs" EntitySet="PROJECTs" />
+      <End Role="WORKTIMEs" EntitySet="WORKTIMEs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WORKTIMEs_To_WORKERs" Association="Self.FK_WORKTIMEs_To_WORKERs">
+      <End Role="WORKERs" EntitySet="WORKERs" />
+      <End Role="WORKTIMEs" EntitySet="WORKTIMEs" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

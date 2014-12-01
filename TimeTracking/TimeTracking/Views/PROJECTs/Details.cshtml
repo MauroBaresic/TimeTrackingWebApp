@@ -1,0 +1,43 @@
+﻿@model TimeTracking.Models.PROJECT
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>PROJECT</legend>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Id)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Id)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.dateStarted)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.dateStarted)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.dateEnded)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.dateEnded)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

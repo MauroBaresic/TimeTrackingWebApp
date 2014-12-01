@@ -1,0 +1,62 @@
+﻿@model IEnumerable<TimeTracking.Models.WORKTIME>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.projectId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PROJECT.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.workerId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WORKER.firstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WORKER.lastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.workTimeInDays)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.projectId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PROJECT.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.workerId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WORKER.firstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WORKER.lastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.workTimeInDays)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { projectId = item.projectId, workerId = item.workerId}) |
+            @Html.ActionLink("Delete", "Delete", new { projectId = item.projectId, workerId = item.workerId })
+        </td>
+    </tr>
+}
+
+</table>

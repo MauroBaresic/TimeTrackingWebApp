@@ -1,0 +1,47 @@
+﻿@model TimeTracking.Models.WORKTIME
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>WORKTIME</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PROJECT.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PROJECT.Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.WORKER.firstName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.WORKER.firstName)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.WORKER.lastName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.WORKER.lastName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.workTimeInDays)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.workTimeInDays)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

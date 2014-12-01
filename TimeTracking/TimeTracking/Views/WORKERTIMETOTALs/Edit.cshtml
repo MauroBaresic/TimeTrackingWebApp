@@ -1,0 +1,60 @@
+﻿@model TimeTracking.Models.WORKERTIMETOTAL
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>WORKERTIMETOTAL</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.workerId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.workerId)
+            @Html.ValidationMessageFor(model => model.workerId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.firstName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.firstName)
+            @Html.ValidationMessageFor(model => model.firstName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.lastName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.lastName)
+            @Html.ValidationMessageFor(model => model.lastName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.timeTotal)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.timeTotal)
+            @Html.ValidationMessageFor(model => model.timeTotal)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

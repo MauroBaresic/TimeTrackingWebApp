@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TimeTrackingDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="PROJECTs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="dateStarted" Type="date" Nullable="false" />
+    <Property Name="dateEnded" Type="date" />
+  </EntityType>
+  <EntityType Name="WORKERs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="firstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="lastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="WORKTIMEs">
+    <Key>
+      <PropertyRef Name="projectId" />
+      <PropertyRef Name="workerId" />
+    </Key>
+    <Property Name="projectId" Type="int" Nullable="false" />
+    <Property Name="workerId" Type="int" Nullable="false" />
+    <Property Name="workTimeInDays" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'C:\USERS\DELL\DOCUMENTS\VISUAL STUDIO 2013\PROJECTS\TIMETRACKING\TIMETRACKING\APP_DATA\TIMETRACKINGDB.MDF.dbo.PROJECTTIMETOTALs' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="PROJECTTIMETOTALs">
+    <Key>
+      <PropertyRef Name="projectId" />
+      <PropertyRef Name="Name" />
+    </Key>
+    <Property Name="projectId" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="timeTotal" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'C:\USERS\DELL\DOCUMENTS\VISUAL STUDIO 2013\PROJECTS\TIMETRACKING\TIMETRACKING\APP_DATA\TIMETRACKINGDB.MDF.dbo.WORKERTIMETOTALs' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="WORKERTIMETOTALs">
+    <Key>
+      <PropertyRef Name="workerId" />
+      <PropertyRef Name="firstName" />
+      <PropertyRef Name="lastName" />
+    </Key>
+    <Property Name="workerId" Type="int" Nullable="false" />
+    <Property Name="firstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="lastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="timeTotal" Type="int" />
+  </EntityType>
+  <Association Name="FK_WORKTIMEs_To_PROJECTs">
+    <End Role="PROJECTs" Type="Self.PROJECTs" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="WORKTIMEs" Type="Self.WORKTIMEs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROJECTs">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="WORKTIMEs">
+        <PropertyRef Name="projectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WORKTIMEs_To_WORKERs">
+    <End Role="WORKERs" Type="Self.WORKERs" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="WORKTIMEs" Type="Self.WORKTIMEs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WORKERs">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="WORKTIMEs">
+        <PropertyRef Name="workerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TimeTrackingDBModelStoreContainer">
+    <EntitySet Name="PROJECTs" EntityType="Self.PROJECTs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WORKERs" EntityType="Self.WORKERs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WORKTIMEs" EntityType="Self.WORKTIMEs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PROJECTTIMETOTALs" EntityType="Self.PROJECTTIMETOTALs" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[PROJECTTIMETOTALs].[projectId] AS [projectId], 
+[PROJECTTIMETOTALs].[Name] AS [Name], 
+[PROJECTTIMETOTALs].[timeTotal] AS [timeTotal]
+FROM [dbo].[PROJECTTIMETOTALs] AS [PROJECTTIMETOTALs]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="WORKERTIMETOTALs" EntityType="Self.WORKERTIMETOTALs" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[WORKERTIMETOTALs].[workerId] AS [workerId], 
+[WORKERTIMETOTALs].[firstName] AS [firstName], 
+[WORKERTIMETOTALs].[lastName] AS [lastName], 
+[WORKERTIMETOTALs].[timeTotal] AS [timeTotal]
+FROM [dbo].[WORKERTIMETOTALs] AS [WORKERTIMETOTALs]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_WORKTIMEs_To_PROJECTs" Association="Self.FK_WORKTIMEs_To_PROJECTs">
+      <End Role="PROJECTs" EntitySet="PROJECTs" />
+      <End Role="WORKTIMEs" EntitySet="WORKTIMEs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WORKTIMEs_To_WORKERs" Association="Self.FK_WORKTIMEs_To_WORKERs">
+      <End Role="WORKERs" EntitySet="WORKERs" />
+      <End Role="WORKTIMEs" EntitySet="WORKTIMEs" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

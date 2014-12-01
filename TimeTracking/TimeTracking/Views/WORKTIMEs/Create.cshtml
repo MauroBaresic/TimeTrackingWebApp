@@ -1,0 +1,52 @@
+﻿@model TimeTracking.Models.WORKTIME
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>WORKTIME</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.projectId, "PROJECT")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("projectId", String.Empty)
+            @Html.ValidationMessageFor(model => model.projectId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.workerId, "WORKER")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("workerId", String.Empty)
+            @Html.ValidationMessageFor(model => model.workerId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.workTimeInDays)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.workTimeInDays)
+            @Html.ValidationMessageFor(model => model.workTimeInDays)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

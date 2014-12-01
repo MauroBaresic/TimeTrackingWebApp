@@ -1,0 +1,35 @@
+﻿@model TimeTracking.Models.WORKTIME
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>WORKTIME</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PROJECT.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PROJECT.Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.WORKER.firstName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.WORKER.firstName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.workTimeInDays)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.workTimeInDays)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

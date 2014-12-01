@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f2dd7e0f8ca444359629ba62c896a6a0" Name="Diagram1">
+        <EntityTypeShape EntityType="TimeTrackingDBModel.PROJECT" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TimeTrackingDBModel.WORKER" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="TimeTrackingDBModel.WORKTIME" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TimeTrackingDBModel.PROJECTTIMETOTAL" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TimeTrackingDBModel.WORKERTIMETOTAL" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="TimeTrackingDBModel.FK_WORKTIMEs_To_PROJECTs" ManuallyRouted="false" />
+        <AssociationConnector Association="TimeTrackingDBModel.FK_WORKTIMEs_To_WORKERs" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

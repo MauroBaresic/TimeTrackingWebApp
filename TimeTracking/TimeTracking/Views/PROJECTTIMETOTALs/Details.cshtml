@@ -1,0 +1,36 @@
+﻿@model TimeTracking.Models.PROJECTTIMETOTAL
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>PROJECTTIMETOTAL</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.projectId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.projectId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.timeTotal)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.timeTotal)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
