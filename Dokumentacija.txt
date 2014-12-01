@@ -1,0 +1,16 @@
+Working solution 1.0
+
+Aplikaciju sam napravio prema MVC patternu.
+
+Aplikaciju sam krenuo raditi od baze podataka. Napravio sam tablice za Projects, Workers i WorkTimes. 
+U tablici Projects su definirani svi projekti. U tablici Workers su definirani svi radnici, 
+a u tablici WorkTimes je definirano koliko je koji radnik radio na kojem projektu(u danima).
+
+Zatim sam napravio poglede(View) za ukupno vrijeme utrošeno na projekte(ProjectTimeTotals) i za ukupno vrijeme radnika 
+koje je utrošio na svim svojim projektima(WorkerTimeTotals).
+
+Iz baze podataka sam generirao Model za entitete. Zatim sam iz modela generirao Contollere i njihove View foldere. Malo sam se
+poigrao s njima jer neki dijelovi nisu bili dobro generirani (npr. kompozitni ključ sam trebao implementirati, promijeniti izgled
+nekih tablica da budu jasnije, zabraniti dodavanje u tablicu ako ključ već postoji itd.)
+
+Moj najbolji dio su SQL tablice i pogledi( koji su svi u 3NF) jer baze podataka inače jako dobro znam.
